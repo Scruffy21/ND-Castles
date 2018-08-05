@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Map from './Map'
 
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -14,15 +13,15 @@ class App extends Component {
           Castles in Poland
         </h1>
 
-        <section class="listing-container">
+        <section className="listing-container">
           <label htmlFor="castles-search">Search for a castle:</label>
           <input id="castles-search" />
           
-          <ul class="castles-listing">
-            <li>Wawel Castle</li>
-            <li>Wawel Castle</li>
-            <li>Wawel Castle</li>
-            <li>Wawel Castle</li>
+          <ul className="castles-listing">
+            <li>Wawel</li>
+            <li>Wawel</li>
+            <li>Wawel</li>
+            <li>Wawel</li>
           </ul>
         </section>
 
