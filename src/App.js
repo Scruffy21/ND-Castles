@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 
+
 import Map from './Map'
+import * as Data from './Data'
 
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    castles: Data.getCastles(),
+    infoText: ''
+  }
+
+  castleClicked = (id) => {
+    // Data.getCastleInfo(id)
+  }
+
   render() {
     return (
       <main className="App">
@@ -25,7 +37,9 @@ class App extends Component {
           </ul>
         </section>
 
-        <Map />
+        <Map castles={this.state.castles}>
+      
+        </Map>
       </main>
     );
   }
