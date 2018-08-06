@@ -17,7 +17,7 @@ export const search = query => {
         return castlesData;
     }
     return castlesData.filter(castle => {
-        return castle.name.includes(query);
+        return castle.name.toLowerCase().includes(query.toLowerCase());
     })
 }
 

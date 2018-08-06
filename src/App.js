@@ -13,8 +13,7 @@ class App extends Component {
     castles: Data.getCastles(),
     infoText: {
       __html: ''
-    },
-    searchQuery: ''
+    }
   }
 
   castleClicked = (id) => {
