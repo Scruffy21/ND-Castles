@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 
 import Map from './Map'
+import CastleItem from './CastleItem'
 import * as Data from './Data'
 
 import './App.css';
@@ -10,11 +11,26 @@ class App extends Component {
 
   state = {
     castles: Data.getCastles(),
-    infoText: ''
+    infoText: {
+      __html: ''
+    },
+    searchQuery: ''
   }
 
   castleClicked = (id) => {
-    // Data.getCastleInfo(id)
+    console.log("castle was clicked");
+    Data.getCastleInfo(id)
+      .then(response => response.json())
+      .then(data => {
+        const wikiId = Object.keys(data.query.pages)[0];
+        const text = data.query.pages[wikiId].extract;
+
+        this.setState({
+          infoText: {
+            __html: text
+        }});
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -30,16 +46,20 @@ class App extends Component {
           <input id="castles-search" />
           
           <ul className="castles-listing">
-            <li>Wawel Castle</li>
-            <li>Wawel Castle</li>
-            <li>Wawel Castle</li>
-            <li>Wawel Castle</li>
+            {this.state.castles.map(castle => (
+              < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
+            ))}
           </ul>
         </section>
 
         <Map castles={this.state.castles}>
       
         </Map>
+        <section>
+          <h3>Info Section</h3>
+          <div dangerouslySetInnerHTML={this.state.infoText}>
+          </div>
+        </section>
       </main>
     );
   }

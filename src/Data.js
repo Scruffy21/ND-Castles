@@ -21,7 +21,7 @@ export const search = query => {
 
 export const getCastleInfo = (id) => {
     const myCastle = castlesData.find(castle => castle.id === id);
-    const url = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=175&titles=${myCastle.titleUrl}&format=json&origin=*`;
+    const url = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=300&titles=${myCastle.titleUrl}&format=json&origin=*`;
     return fetch(url);
 } 
 

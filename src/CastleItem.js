@@ -2,6 +2,11 @@ import React from 'react'
 
 class CastleItem extends React.Component {
     render() {
-        <li></li>
+        const { castleClicked, castle } = this.props;
+        return (
+            <li onClick={() => castleClicked(castle.id)}>{castle.name}</li>
+        )
     }
 }
+
+export default CastleItem
