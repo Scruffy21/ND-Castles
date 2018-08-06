@@ -18,10 +18,10 @@ class App extends Component {
           <input id="castles-search" />
           
           <ul className="castles-listing">
-            <li>Wawel</li>
-            <li>Wawel</li>
-            <li>Wawel</li>
-            <li>Wawel</li>
+            <li>Wawel Castle</li>
+            <li>Wawel Castle</li>
+            <li>Wawel Castle</li>
+            <li>Wawel Castle</li>
           </ul>
         </section>
 
