@@ -33,6 +33,10 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  search = (query) => {
+    this.setState({castles: Data.search(query)})
+  }
+
   render() {
     return (
       <main className="App">
@@ -43,7 +47,7 @@ class App extends Component {
 
         <section className="listing-container">
           <label htmlFor="castles-search">Search for a castle:</label>
-          <input id="castles-search" />
+          <input id="castles-search" onChange={event => this.search(event.target.value)}/>
           
           <ul className="castles-listing">
             {this.state.castles.map(castle => (
