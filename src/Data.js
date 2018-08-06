@@ -10,6 +10,8 @@ export const getCastles = () => {
     return castlesData;
 }
 
+// return an array of castles where the name contains the query string
+
 export const search = query => {
     if (query === '') {
         return castlesData;
@@ -19,6 +21,8 @@ export const search = query => {
     })
 }
 
+
+// Retrieve data from Wikipedia API
 export const getCastleInfo = (id) => {
     const myCastle = castlesData.find(castle => castle.id === id);
     const url = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=300&titles=${myCastle.titleUrl}&format=json&origin=*`;

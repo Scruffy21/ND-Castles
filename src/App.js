@@ -52,7 +52,7 @@ class App extends Component {
           </ul>
         </section>
 
-        <Map castles={this.state.castles}>
+        <Map castles={this.state.castles} castleClicked={this.castleClicked}>
       
         </Map>
         <section>
