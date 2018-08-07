@@ -1,5 +1,5 @@
 import React from 'react'
-import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
+import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 const GoogleMapCont = withGoogleMap(props => (
     <GoogleMap
@@ -7,8 +7,9 @@ const GoogleMapCont = withGoogleMap(props => (
         defaultZoom={6}
     >
         {props.castles.map(castle => (
-            <Marker position={castle.location} title={castle.name} key={castle.id} onClick={() => props.castleClicked(castle.id)}/>
+            <Marker position={castle.location} title={castle.name} key={castle.id} onClick={() => props.castleClicked(castle.id)} />
         ))}
+        
     </GoogleMap>
 ));
 
