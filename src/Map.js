@@ -9,7 +9,6 @@ const GoogleMapCont = withGoogleMap(props => (
         {props.castles.map(castle => (
             <Marker position={castle.location} title={castle.name} key={castle.id} onClick={() => props.castleClicked(castle.id)} />
         ))}
-        <InfoWindow />
     </GoogleMap>
 ));
 
