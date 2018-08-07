@@ -16,8 +16,10 @@ class App extends Component {
     }
   }
 
+  // TODO:
+  // make sure the map doesn't reload, but the markers do! I know, hard. not sure how to do it.
+
   castleClicked = (id) => {
-    console.log("castle was clicked");
     Data.getCastleInfo(id)
       .then(response => response.json())
       .then(data => {
@@ -27,9 +29,15 @@ class App extends Component {
         this.setState({
           infoText: {
             __html: text
+          }
+        });
+      })
+      .catch(err => { 
+        this.setState({
+          infoText: {
+            __html: 'Unfortunately there was an error while loading castle information from Wikipedia. You can try clicking on the castle again.'
         }});
       })
-      .catch(err => console.log(err))
   }
 
   search = (query) => {

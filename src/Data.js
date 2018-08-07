@@ -27,6 +27,4 @@ export const getCastleInfo = (id) => {
     const myCastle = castlesData.find(castle => castle.id === id);
     const url = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=300&titles=${myCastle.titleUrl}&format=json&origin=*`;
     return fetch(url);
-} 
-
-// import * as Data from './Data' -- write this to import the methods
+}
