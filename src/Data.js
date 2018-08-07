@@ -18,7 +18,6 @@ export const getCastles = () => {
 }
 
 // return an array of castles where the name contains the query string
-
 export const search = query => {
     if (query === '') {
         return castlesData;
