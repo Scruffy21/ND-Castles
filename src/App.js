@@ -16,9 +16,6 @@ class App extends Component {
     }
   }
 
-  // TODO:
-  // make sure the map doesn't reload, but the markers do! I know, hard. not sure how to do it.
-
   castleClicked = (id) => {
     Data.getCastleInfo(id)
       .then(response => response.json())
@@ -63,9 +60,8 @@ class App extends Component {
           </ul>
         </section>
 
-        <Map castles={this.state.castles} castleClicked={this.castleClicked}>
+        <Map castles={this.state.castles} castleClicked={this.castleClicked} />
       
-        </Map>
         <section>
           <h3>Info Section</h3>
           <div dangerouslySetInnerHTML={this.state.infoText}>

@@ -9,7 +9,7 @@ const castlesData = [
     {id: 7, name: 'Książ Castle', location: {lat: 50.842255, lng: 16.291857}, titleUrl: 'Ksi%C4%85%C5%BC' },
     {id: 8, name: 'Czorsztyn Castle', location: {lat: 49.434846, lng: 20.313158}, titleUrl: 'Czorsztyn%20Castle' },
     {id: 9, name: 'Bobolice Castle', location: {lat: 50.613153, lng: 19.4932}, titleUrl: 'Bobolice%20Castle' },
-    {id: 10, name: 'Pieskowa Skała Castle', location: {lat: 50.244306, lng: 19.779242}, titleUrl: 'Pieskowa%20Skała' },
+    {id: 10, name: 'Pieskowa Skała Castle', location: {lat: 50.244306, lng: 19.779242}, titleUrl: 'Pieskowa%20Ska%C5%82a' },
     {id: 11, name: 'Ducal Castle, Szczecin', location: {lat: 53.426111, lng: 14.560278}, titleUrl: 'Ducal%20Castle,%20Szczecin' },
 ];
 
@@ -31,6 +31,6 @@ export const search = query => {
 // Retrieve data from Wikipedia API
 export const getCastleInfo = (id) => {
     const myCastle = castlesData.find(castle => castle.id === id);
-    const url = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exchars=300&titles=${myCastle.titleUrl}&format=json&origin=*`;
+    const url = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=true&exsentences=5&titles=${myCastle.titleUrl}&format=json&origin=*`;
     return fetch(url);
 }

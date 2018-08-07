@@ -7,7 +7,8 @@ const GoogleMapCont = withGoogleMap(props => (
         defaultZoom={6}
     >
         {props.castles.map(castle => (
-            <Marker position={castle.location} title={castle.name} key={castle.id} onClick={() => props.castleClicked(castle.id)} />
+            <Marker position={castle.location} title={castle.name} key={castle.id} onClick={() => props.castleClicked(castle.id)} >
+                </Marker>
         ))}
     </GoogleMap>
 ));
