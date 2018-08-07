@@ -13,7 +13,8 @@ class App extends Component {
     castles: Data.getCastles(),
     infoText: {
       __html: ''
-    }
+    },
+    activeMarker: null
   }
 
   castleClicked = (id) => {
@@ -26,7 +27,8 @@ class App extends Component {
         this.setState({
           infoText: {
             __html: text
-          }
+          },
+          activeMarker: id
         });
       })
       .catch(err => { 
@@ -60,7 +62,7 @@ class App extends Component {
           </ul>
         </section>
 
-        <Map castles={this.state.castles} castleClicked={this.castleClicked} />
+        <Map castles={this.state.castles} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker}/>
       
         <section>
           <h3>Info Section</h3>

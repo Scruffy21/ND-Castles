@@ -8,8 +8,13 @@
   <body>
     <div id="root"></div>
 
+    <script>
+        function initMap() {
+            window.google = google;
+        }
+    </script>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDPwx0mGzNzu-2INrplAdAOjyojQ65E6I&v=3">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDPwx0mGzNzu-2INrplAdAOjyojQ65E6I&v=3&callback=initMap">
     </script>
   </body>
 </html>
