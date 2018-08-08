@@ -18,7 +18,7 @@ class App extends Component {
   state = {
     castles: Data.getCastles(),
     infoText: {
-      __html: ''
+      __html: 'Information about the cliicked castle will appear here.'
     },
     activeMarker: null
   }
@@ -29,7 +29,6 @@ class App extends Component {
       .then(data => {
         const wikiId = Object.keys(data.query.pages)[0];
         const text = data.query.pages[wikiId].extract;
-
         this.setState({
           infoText: {
             __html: text
@@ -72,11 +71,11 @@ class App extends Component {
         </section>
 
         <Map castles={this.state.castles} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker}/>
-        {/* <section>
-          <h3>Info Section</h3>
+        <section className="castle-details">
+          <h3>Castle details</h3>
           <div dangerouslySetInnerHTML={this.state.infoText}>
           </div>
-        </section> */}
+        </section>
       </main>
     );
   }

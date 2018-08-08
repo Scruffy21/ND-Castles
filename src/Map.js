@@ -1,8 +1,9 @@
 import React from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 
-let defaultIcon, highlightedIcon, mapsFailed;
+let defaultIcon, highlightedIcon;
 
+// if a wrong key is input, there will be an alert box shown
 window.gm_authFailure = function () {
     alert("Unfortunately, google maps authorisation has failed. Perhaps the wrong key was input.");
 }

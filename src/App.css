@@ -10,17 +10,15 @@ html, body {
 
 
 /* HEADER */
-h1 {
 
-}
 
 /* LISTING */
 
 .info-sidebar {
+  padding: 0 10px;
   width: 20%;
   display: inline-block;
   vertical-align: top;
-  height: calc(90vh)
 }
 
 
@@ -31,19 +29,38 @@ h1 {
 }
 
 .castles-listing li {
-  padding: 10px;
+  
 }
 
+.castle-item {
+  padding: 10px 0;
+  display: inline-block;
+}
+
+.castle-item:visited {
+  color: inherit;
+}
+
+.castle-item:hover {
+  color: blue;
+  background-color: grey;
+}
 
 /* MAP */
 
 .map-container {
   height: 100vh;
-  width: 80%;
+  width: calc(80% - 20px);
   display: inline-block;
   overflow: hidden;
 }
 
 #map {
   height: 100%;
+}
+
+
+/* CASTLE DETAILS SECTION */
+.castle-details {
+  padding: 10px;
 }
