@@ -63,7 +63,7 @@ class App extends Component {
             Castles in Poland
           </h1>
           <label htmlFor="castles-search">Search for a castle:</label>
-          <input id="castles-search" onChange={event => this.search(event.target.value)}/>
+          <input id="castles-search" placeholder="Castle search" onChange={event => this.search(event.target.value)}/>
           
           <ul className="castles-listing">
             {this.state.castles.map(castle => (
