@@ -24,8 +24,8 @@ class App extends Component {
   }
 
   castleClicked = (id) => {
-    const textAddition = `<p>Click <a href="https://en.wikipedia.org/wiki/${this.state.castles[id].titleUrl}">here</a> to learn more. Data sourced from <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
-    
+    const textAddition = `<p style="font-style:italic">Click <a href="https://en.wikipedia.org/wiki/${this.state.castles[id].titleUrl}">here</a> to learn more. Data sourced from <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
+
     Data.getCastleInfo(id)
       .then(response => response.json())
       .then(data => {
