@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-
+// TODO
+//zrob zeby dalo sie zlikwidowac active section/active marker (jakis krzyzyk)
+// daj chyba na sidebar te informacje. chociaz sam nie wiem.
+// get slightly nicer styling
+// accessibility (tab index etc)
+// make it work on mobiles! (this will take some time)
+// good job though! the markers work now!
 
 import Map from './Map'
 import CastleItem from './CastleItem'

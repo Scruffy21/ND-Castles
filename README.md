@@ -46,7 +46,5 @@ You can refer [to the React documentation](https://reactjs.org/docs/react-dom.ht
 
 ## Resources
 
-The castles' data was obtained from wikipedia.org
-
-Icons for map markers obtained from xxx
+The castles' descriptions were obtained from wikipedia.org
 
