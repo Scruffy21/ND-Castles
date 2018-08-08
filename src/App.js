@@ -18,12 +18,14 @@ class App extends Component {
   state = {
     castles: Data.getCastles(),
     infoText: {
-      __html: 'Information about the cliicked castle will appear here.'
+      __html: 'Information about the clicked castle will appear here.'
     },
     activeMarker: null
   }
 
   castleClicked = (id) => {
+    const textAddition = `<p>Click <a href="https://en.wikipedia.org/wiki/${this.state.castles[id].titleUrl}">here</a> to learn more. Data sourced from <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
+    
     Data.getCastleInfo(id)
       .then(response => response.json())
       .then(data => {
@@ -31,7 +33,7 @@ class App extends Component {
         const text = data.query.pages[wikiId].extract;
         this.setState({
           infoText: {
-            __html: text
+            __html: text + textAddition
           },
           activeMarker: id
         });
