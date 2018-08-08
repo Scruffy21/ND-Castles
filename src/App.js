@@ -6,11 +6,11 @@ import React, { Component } from 'react';
 // accessibility (tab index etc)
 // make it work on mobiles! (this will take some time)
 // good job though! the markers work now!
+// handle google maps API errors (i'm already handling wikipedia errors)
 
 import Map from './Map'
 import CastleItem from './CastleItem'
 import * as Data from './Data'
-
 import './App.css';
 
 class App extends Component {
@@ -49,6 +49,8 @@ class App extends Component {
     this.setState({castles: Data.search(query)})
   }
 
+
+
   render() {
     return (
       <main className="App">
@@ -69,12 +71,11 @@ class App extends Component {
         </section>
 
         <Map castles={this.state.castles} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker}/>
-      
-        <section>
+        {/* <section>
           <h3>Info Section</h3>
           <div dangerouslySetInnerHTML={this.state.infoText}>
           </div>
-        </section>
+        </section> */}
       </main>
     );
   }

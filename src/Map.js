@@ -1,7 +1,11 @@
 import React from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 
-let defaultIcon, highlightedIcon;
+let defaultIcon, highlightedIcon, mapsFailed;
+
+window.gm_authFailure = function () {
+    alert("Unfortunately, google maps authorisation has failed. Perhaps the wrong key was input.");
+}
 
 function makeMarkerIcon(markerColor, google) {
     return {
@@ -15,9 +19,9 @@ function makeMarkerIcon(markerColor, google) {
 
 const GoogleMapCont = withScriptjs(withGoogleMap(props => {
     
+    // make sure we're not calling the makeMarkerIcon function unnecessarily
     defaultIcon = defaultIcon || makeMarkerIcon('ff1616', window.google);
     highlightedIcon = highlightedIcon || makeMarkerIcon('0091ff', window.google);
-    
     return (
         <GoogleMap
             defaultCenter={{ lat: 52.229676, lng: 19.012229 }}
