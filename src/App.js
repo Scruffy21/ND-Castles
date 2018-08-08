@@ -55,11 +55,12 @@ class App extends Component {
     return (
       <main className="App">
         
-        <h1 className="header">
-          Castles in Poland
-        </h1>
+        
 
-        <section className="listing-container">
+        <section className="info-sidebar">
+          <h1 className="header">
+            Castles in Poland
+          </h1>
           <label htmlFor="castles-search">Search for a castle:</label>
           <input id="castles-search" onChange={event => this.search(event.target.value)}/>
           

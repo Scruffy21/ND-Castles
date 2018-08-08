@@ -33,6 +33,7 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
                     title={castle.name}
                     key={castle.id}
                     icon={castle.id === props.activeMarker ? highlightedIcon : defaultIcon}
+                    animation={castle.id === props.activeMarker ? window.google.maps.Animation.BOUNCE : null}
                     onClick={() => props.castleClicked(castle.id)}>
                 </Marker>
             ))}
