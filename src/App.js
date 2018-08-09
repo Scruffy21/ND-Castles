@@ -49,6 +49,10 @@ class App extends Component {
             __html: 'Unfortunately there was an error while loading castle information from Wikipedia. You can try clicking on the castle again.'
         }});
       })
+    
+    if (this.state.sidebarOpened === false) {
+      this.toggleSidebar();
+    }
   }
 
   search = (query) => {
@@ -82,14 +86,15 @@ class App extends Component {
               < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
             ))}
           </ul>
+          <div className="castle-info">          <h3>Castle details</h3>
+          <div dangerouslySetInnerHTML={this.state.infoText}>
+          </div></div>
         </section>
 
         <Map castles={this.state.castles} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker} />
         
         <section className="castle-details">
-          <h3>Castle details</h3>
-          <div dangerouslySetInnerHTML={this.state.infoText}>
-          </div>
+
         </section>
       </main>
     );

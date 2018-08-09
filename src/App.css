@@ -50,7 +50,7 @@ h1 {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  max-height: 80vh;
+  max-height: 40vh;
   overflow: auto;
 }
 
@@ -95,4 +95,9 @@ h1 {
 /* CASTLE DETAILS SECTION */
 .castle-details {
   padding: 10px;
+}
+
+.castle-info {
+  max-height: 40vh;
+  overflow: auto;
 }
