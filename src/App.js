@@ -8,6 +8,9 @@ import React, { Component } from 'react';
 // good job though! the markers work now!
 // handle google maps API errors (i'm already handling wikipedia errors)
 
+// need to think how to make it responsive for mobiles. where to put the clickable item to expan the sidebar...
+// this and accessibility and I think I'm done
+// maybe sw to cache also wiki requests...
 import Map from './Map'
 import CastleItem from './CastleItem'
 import * as Data from './Data'
@@ -20,7 +23,8 @@ class App extends Component {
     infoText: {
       __html: 'Information about the clicked castle will appear here.'
     },
-    activeMarker: null
+    activeMarker: null,
+    sidebarOpened: true
   }
 
   castleClicked = (id) => {
@@ -50,21 +54,21 @@ class App extends Component {
     this.setState({castles: Data.search(query)})
   }
 
-
+  openSidebar = () => {this.setState({sidebarOpened: true})}
 
   render() {
     return (
       <main className="App">
-        
-        
-
-        <section className="info-sidebar">
-          <h1 className="header">
+        <header>
+          <span className="sidebar-opener" title="Open search">&#9776;</span>
+          <h1>
             Castles in Poland
           </h1>
+        </header>
+        
+        <section className="info-sidebar">
           <label htmlFor="castles-search">Search for a castle:</label>
-          <input id="castles-search" placeholder="Castle search" onChange={event => this.search(event.target.value)}/>
-          
+          <input id="castles-search" placeholder="Castle search" onChange={event => this.search(event.target.value)} />
           <ul className="castles-listing">
             {this.state.castles.map(castle => (
               < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
@@ -72,7 +76,8 @@ class App extends Component {
           </ul>
         </section>
 
-        <Map castles={this.state.castles} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker}/>
+        <Map castles={this.state.castles} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker} />
+        
         <section className="castle-details">
           <h3>Castle details</h3>
           <div dangerouslySetInnerHTML={this.state.infoText}>

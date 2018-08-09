@@ -5,11 +5,25 @@ html {
 html, body {
   padding: 0;
   margin: 0;
+  align-items: center;
 }
 
-
-
 /* HEADER */
+
+header {
+  height: 10vh;
+}
+
+.sidebar-opener {
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+}
+
+h1 {
+  display: inline;
+  font-size: 2rem;
+}
 
 
 /* LISTING */
@@ -19,28 +33,29 @@ html, body {
   width: 20%;
   display: inline-block;
   vertical-align: top;
-  overflow-y: auto;
-  height: 100vh;
+  height: 90vh;
 }
 
 #castles-search {
-  width: 100%;
+  width: calc(100% - 20px);
+  font-size: 1.1rem;
 }
 
 .castles-listing {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  
+  height: 80vh;
+  overflow: auto;
 }
 
 .castle-item {
-  padding: 10px 0;
+  padding: 10px;
   display: inline-block;
 }
 
 .castle-item:hover {
-  background-color: #6440ff;
+  background-color: #0091ff;
   color: white;
   cursor: pointer;
 }
@@ -48,10 +63,18 @@ html, body {
 /* MAP */
 
 .map-container {
-  height: 100vh;
+  height: 90vh;
   width: calc(80% - 20px);
   display: inline-block;
   overflow: hidden;
+}
+
+.sidebar-open.map-container {
+  width: calc(80% - 20px);
+}
+
+.sidebar-open.info-sidebar {
+  left: 0;
 }
 
 #map {
