@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classnames from 'classnames'
 // TODO
 //zrob zeby dalo sie zlikwidowac active section/active marker (jakis krzyzyk)
 // daj chyba na sidebar te informacje. chociaz sam nie wiem.
@@ -28,7 +29,7 @@ class App extends Component {
   }
 
   castleClicked = (id) => {
-    const textAddition = `<p style="font-style:italic">Click <a href="https://en.wikipedia.org/wiki/${this.state.castles[id].titleUrl}">here</a> to learn more. Data sourced from <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
+    const textAddition = `<p style="font-style:italic">Click <a href="https://en.wikipedia.org/wiki/${this.state.castles.find(castle => castle.id === id).titleUrl}">here</a> to learn more. Data sourced from <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
 
     Data.getCastleInfo(id)
       .then(response => response.json())
@@ -51,16 +52,23 @@ class App extends Component {
   }
 
   search = (query) => {
-    this.setState({castles: Data.search(query)})
+    this.setState({ castles: Data.search(query) })
   }
 
-  openSidebar = () => {this.setState({sidebarOpened: true})}
+  toggleSidebar = () => {
+     this.setState(prevState => ({ sidebarOpened: !prevState.sidebarOpened }))
+  }
 
   render() {
+    const appClassNames = classnames({
+      'app': true,
+      'sidebar-open': this.state.sidebarOpened
+    })
+
     return (
-      <main className="App">
+      <main className={appClassNames}>
         <header>
-          <span className="sidebar-opener" title="Open search">&#9776;</span>
+          <span className="sidebar-opener" title="Open search" onClick={this.toggleSidebar}>&#9776;</span>
           <h1>
             Castles in Poland
           </h1>

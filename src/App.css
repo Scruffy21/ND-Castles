@@ -29,11 +29,16 @@ h1 {
 /* LISTING */
 
 .info-sidebar {
+  background-color: #e4f1ff;
   padding: 0 10px;
   width: 20%;
   display: inline-block;
   vertical-align: top;
-  height: 90vh;
+  position: absolute;
+  top: 10vh;
+  left: -500px;
+  z-index: 1;
+  transition: all ease 0.3s;
 }
 
 #castles-search {
@@ -45,7 +50,7 @@ h1 {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  height: 80vh;
+  max-height: 80vh;
   overflow: auto;
 }
 
@@ -64,16 +69,21 @@ h1 {
 
 .map-container {
   height: 90vh;
-  width: calc(80% - 20px);
+  width: 100%;
   display: inline-block;
   overflow: hidden;
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  transition: all ease 0.3s;
 }
 
-.sidebar-open.map-container {
+.sidebar-open .map-container {
   width: calc(80% - 20px);
+  left: calc(20% + 20px)
 }
 
-.sidebar-open.info-sidebar {
+.sidebar-open .info-sidebar {
   left: 0;
 }
 
