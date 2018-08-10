@@ -32,6 +32,7 @@ h1 {
   background-color: #e4f1ff;
   padding: 0 10px;
   width: 20%;
+  height: 90vh;
   display: inline-block;
   vertical-align: top;
   position: absolute;
@@ -93,9 +94,6 @@ h1 {
 
 
 /* CASTLE DETAILS SECTION */
-.castle-details {
-  padding: 10px;
-}
 
 .castle-info {
   max-height: 40vh;

@@ -25,11 +25,11 @@ class App extends Component {
       __html: 'Information about the clicked castle will appear here.'
     },
     activeMarker: null,
-    sidebarOpened: true
+    sidebarOpened: false
   }
 
   castleClicked = (id) => {
-    const textAddition = `<p style="font-style:italic">Click <a href="https://en.wikipedia.org/wiki/${this.state.castles.find(castle => castle.id === id).titleUrl}">here</a> to learn more. Data sourced from <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
+    const textAddition = `<p style="font-style:italic">Click <a target="_blank" href="https://en.wikipedia.org/wiki/${this.state.castles.find(castle => castle.id === id).titleUrl}">here</a> to learn more. Data sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
 
     Data.getCastleInfo(id)
       .then(response => response.json())
@@ -86,16 +86,13 @@ class App extends Component {
               < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
             ))}
           </ul>
-          <div className="castle-info">          <h3>Castle details</h3>
-          <div dangerouslySetInnerHTML={this.state.infoText}>
-          </div></div>
+          <div className="castle-info">
+            <h3>Castle details</h3>
+            <div dangerouslySetInnerHTML={this.state.infoText}></div>
+          </div>
         </section>
 
         <Map castles={this.state.castles} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker} />
-        
-        <section className="castle-details">
-
-        </section>
       </main>
     );
   }
