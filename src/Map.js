@@ -1,5 +1,6 @@
 import React from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
+import MarkerClusterer from "react-google-maps/lib/components/addons/MarkerClusterer";
 
 let defaultIcon, highlightedIcon;
 
@@ -28,6 +29,11 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
             defaultCenter={{ lat: 52.229676, lng: 19.012229 }}
             defaultZoom={6}
         >
+            <MarkerClusterer
+                averageCenter
+                enableRetinaIcons
+                gridSize={60}
+            >
             {props.castles.map(castle => (
                 <Marker
                     position={castle.location}
@@ -37,7 +43,8 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
                     animation={castle.id === props.activeMarker ? window.google.maps.Animation.BOUNCE : null}
                     onClick={() => props.castleClicked(castle.id)}>
                 </Marker>
-            ))}
+                ))}
+                </MarkerClusterer>
         </GoogleMap>
     )
 }));
