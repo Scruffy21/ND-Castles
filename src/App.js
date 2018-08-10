@@ -19,19 +19,35 @@ import './App.css';
 
 class App extends Component {
 
+  allCastles = [];
+
   state = {
-    castles: Data.getCastles(),
+    castles: [],
     infoText: {
       __html: 'Information about the clicked castle will appear here.'
     },
     activeMarker: null,
-    sidebarOpened: false
+    sidebarOpened: false,
+    countryFilter: 'POL'
+  }
+
+  constructor() {
+    super();
+    fetch('data.JSON')
+      .then(r => r.json())
+      .then(data => {
+        this.allCastles = data.slice();
+        this.setState({ castles: data.slice() })
+      });
   }
 
   castleClicked = (id) => {
     const textAddition = `<p style="font-style:italic">Click <a target="_blank" href="https://en.wikipedia.org/wiki/${this.state.castles.find(castle => castle.id === id).titleUrl}">here</a> to learn more. Data sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
 
-    Data.getCastleInfo(id)
+      if (this.state.sidebarOpened === false) {
+        this.toggleSidebar();
+      }
+    Data.getCastleInfo(id, this.allCastles)
       .then(response => response.json())
       .then(data => {
         const wikiId = Object.keys(data.query.pages)[0];
@@ -50,13 +66,15 @@ class App extends Component {
         }});
       })
     
-    if (this.state.sidebarOpened === false) {
-      this.toggleSidebar();
-    }
+
+  }
+
+  filterByCountry = (query) => {
+    this.setState({countryFilter: query})
   }
 
   search = (query) => {
-    this.setState({ castles: Data.search(query) })
+    this.setState({ castles: Data.search(query, this.allCastles) })
   }
 
   toggleSidebar = () => {
@@ -79,10 +97,15 @@ class App extends Component {
         </header>
         
         <section className="info-sidebar">
-          <label htmlFor="castles-search">Search for a castle:</label>
-          <input id="castles-search" placeholder="Castle search" onChange={event => this.search(event.target.value)} />
+          <label htmlFor="country-filter">Filter by ISO code:</label>
+          <input id="country-filter" placeholder="Filter by country" value={this.state.countryFilter} onChange={event => this.filterByCountry(event.target.value)} />
+          {/* <label htmlFor="castles-search">Search for a castle:</label>
+          <input id="castles-search" placeholder="Castle search" onChange={event => this.search(event.target.value)} /> */}
           <ul className="castles-listing">
-            {this.state.castles.map(castle => (
+            {/* {this.state.castles.map(castle => (
+              < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
+            ))} */}
+            {this.state.castles.filter(castle => castle.iso.includes(this.state.countryFilter)).map(castle => (
               < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
             ))}
           </ul>
@@ -92,7 +115,7 @@ class App extends Component {
           </div>
         </section>
 
-        <Map castles={this.state.castles} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker} />
+        <Map castles={this.state.castles.filter(castle => castle.iso.includes(this.state.countryFilter))} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker} />
       </main>
     );
   }

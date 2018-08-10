@@ -51,6 +51,9 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
 
 class Map extends React.Component {
 
+    // shouldComponentUpdate() {
+    //     return false;
+    // }
 
     render() {
         return (
