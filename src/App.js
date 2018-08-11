@@ -52,19 +52,23 @@ class App extends Component {
 
   castleClicked = (id) => {
     const textAddition = `<p style="font-style:italic">Click <a target="_blank" href="https://en.wikipedia.org/wiki/${encodeURIComponent(this.allCastles[id].name)}">here</a> to learn more. Data sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
+    
 
       if (this.state.sidebarOpened === false) {
         this.toggleSidebar();
       }
     
-    Data.getCastleInfo(id, this.allCastles)
+    Data.getCastleInfo(id, this.allCastles[id])
       .then(response => response.json())
       .then(data => {
         const wikiId = Object.keys(data.query.pages)[0];
         const text = data.query.pages[wikiId].extract;
+        const name = this.allCastles[id].name;
+        const image = data.query.pages[wikiId].thumbnail.source;
+        const imageInsert = `<image src=\'${image}\' alt=\'${name}\' class=\'castle-image\'>`;
         this.setState({
           infoText: {
-            __html: text + textAddition
+            __html: imageInsert + text + textAddition
           },
           activeMarker: id
         });

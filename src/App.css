@@ -99,3 +99,7 @@ h1 {
   max-height: 40vh;
   overflow: auto;
 }
+
+.castle-image {
+  float: left;
+}

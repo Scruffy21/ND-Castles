@@ -10,8 +10,7 @@ export const search = (query, castles) => {
 
 
 // Retrieve data from Wikipedia API
-export const getCastleInfo = (id, castles) => {
-    const myCastle = castles.find(castle => castle.id === id);
-    const url = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=true&exsentences=5&titles=${encodeURIComponent(myCastle.name)}&format=json&origin=*`;
+export const getCastleInfo = (id, castle) => {
+    const url = `https://en.wikipedia.org/w/api.php?action=query&prop=pageimages|extracts&piprop=thumbnail&exintro=true&exsentences=5&titles=${encodeURIComponent(castle.name)}&format=json&origin=*`;
     return fetch(url);
 }
