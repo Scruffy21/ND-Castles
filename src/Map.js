@@ -59,7 +59,7 @@ class Map extends React.Component {
     //     }
     //     return true;
     // }
-
+    
     render() {
         return (
             <GoogleMapCont

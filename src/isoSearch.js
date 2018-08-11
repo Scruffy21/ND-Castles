@@ -10,7 +10,7 @@ class IsoSearch extends React.Component {
                 <label htmlFor="country-filter">Filter by ISO code:</label>
                 <select value={this.props.countryFilter} id="country-filter" onChange={event => this.props.filterByCountry(event.target.value)} >
                     {countries.map(country => {
-                        return (<option value={country}>{country}</option>)
+                        return (<option value={country} key={country}>{country}</option>)
                     })}
                     </select>
             </div>

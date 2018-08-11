@@ -51,7 +51,7 @@ class App extends Component {
 
 
   castleClicked = (id) => {
-    const textAddition = `<p style="font-style:italic">Click <a target="_blank" href="https://en.wikipedia.org/wiki/${encodeURIComponent(this.allCastles[id].title)}">here</a> to learn more. Data sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
+    const textAddition = `<p style="font-style:italic">Click <a target="_blank" href="https://en.wikipedia.org/wiki/${encodeURIComponent(this.allCastles[id].name)}">here</a> to learn more. Data sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
 
       if (this.state.sidebarOpened === false) {
         this.toggleSidebar();
@@ -103,7 +103,9 @@ class App extends Component {
     else {
       this.setState({
         visibleCastles: this.castlesCountryFiltered.filter(castle => {
-          return new RegExp(searchQuery, 'i').test(castle.title);
+          // the second one seems faster...
+          // return new RegExp(searchQuery, 'i').test(castle.name);
+          return castle.name.toLowerCase().includes(searchQuery.toLowerCase());
         })
       }
       )
@@ -115,7 +117,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('rerendergin app')
     const appClassNames = classnames({
       'app': true,
       'sidebar-open': this.state.sidebarOpened
