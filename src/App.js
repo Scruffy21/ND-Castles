@@ -64,16 +64,18 @@ class App extends Component {
         const wikiId = Object.keys(data.query.pages)[0];
         const text = data.query.pages[wikiId].extract;
         const name = this.allCastles[id].name;
-        const image = data.query.pages[wikiId].thumbnail.source;
+        const image = data.query.pages[wikiId].thumbnail ? data.query.pages[wikiId].thumbnail.source : null;
         const imageInsert = `<image src=\'${image}\' alt=\'${name}\' class=\'castle-image\'>`;
+        console.log(data);
         this.setState({
           infoText: {
-            __html: imageInsert + text + textAddition
+            __html: image ? imageInsert + text + textAddition : text + textAddition
           },
           activeMarker: id
         });
       })
       .catch(err => { 
+        console.log(err);
         this.setState({
           infoText: {
             __html: 'Unfortunately there was an error while loading castle information from Wikipedia. You can try clicking on the castle again.'
