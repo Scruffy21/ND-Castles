@@ -34,25 +34,30 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
                 enableRetinaIcons
                 gridSize={60}
             >
-            {props.castles.map(castle => (
-                <Marker
-                    position={castle.location}
-                    title={castle.name}
-                    key={castle.id}
-                    icon={castle.id === props.activeMarker ? highlightedIcon : defaultIcon}
-                    animation={castle.id === props.activeMarker ? window.google.maps.Animation.BOUNCE : null}
-                    onClick={() => props.castleClicked(castle.id)}>
-                </Marker>
+                {props.castles.map(castle => (
+                    <Marker
+                        position={castle.location}
+                        title={castle.name}
+                        key={castle.id}
+                        icon={castle.id === props.activeMarker ? highlightedIcon : defaultIcon}
+                        animation={castle.id === props.activeMarker ? window.google.maps.Animation.BOUNCE : null}
+                        onClick={() => props.castleClicked(castle.id)}>
+                    </Marker>
                 ))}
-                </MarkerClusterer>
+            </MarkerClusterer>
         </GoogleMap>
     )
 }));
 
 class Map extends React.Component {
 
-    // shouldComponentUpdate() {
-    //     return false;
+    // // not fully functional, because it's possible that same length but diff values
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log(this.props.castles, nextProps.castles, this.props.castles === nextProps.castles);
+    //     if ((this.props.castles === nextProps.castles) && (this.props.activeMarker === nextProps.activeMarker)) {
+    //         return false;
+    //     }
+    //     return true;
     // }
 
     render() {

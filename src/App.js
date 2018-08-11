@@ -12,23 +12,29 @@ import classnames from 'classnames'
 // need to think how to make it responsive for mobiles. where to put the clickable item to expan the sidebar...
 // this and accessibility and I think I'm done
 // maybe sw to cache also wiki requests...
+
+// try to not rerender map when only info requested? but we need to change the marker. I think it's okay this way...
+
 import Map from './Map'
 import CastleItem from './CastleItem'
 import * as Data from './Data'
+import IsoSearch from './IsoSearch'
 import './App.css';
 
 class App extends Component {
 
   allCastles = [];
+  countryFilter = 'POL';
+  searchQuery = '';
+  castlesCountryFiltered = [];
 
   state = {
-    castles: [],
+    visibleCastles: [],
     infoText: {
       __html: 'Information about the clicked castle will appear here.'
     },
     activeMarker: null,
     sidebarOpened: false,
-    countryFilter: 'POL'
   }
 
   constructor() {
@@ -37,16 +43,20 @@ class App extends Component {
       .then(r => r.json())
       .then(data => {
         this.allCastles = data.slice();
-        this.setState({ castles: data.slice() })
+        this.filterByCountry(this.countryFilter);
+        this.updateVisible(this.searchQuery);
       });
   }
 
+
+
   castleClicked = (id) => {
-    const textAddition = `<p style="font-style:italic">Click <a target="_blank" href="https://en.wikipedia.org/wiki/${this.state.castles.find(castle => castle.id === id).titleUrl}">here</a> to learn more. Data sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
+    const textAddition = `<p style="font-style:italic">Click <a target="_blank" href="https://en.wikipedia.org/wiki/${encodeURIComponent(this.allCastles[id].title)}">here</a> to learn more. Data sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
 
       if (this.state.sidebarOpened === false) {
         this.toggleSidebar();
       }
+    
     Data.getCastleInfo(id, this.allCastles)
       .then(response => response.json())
       .then(data => {
@@ -69,12 +79,35 @@ class App extends Component {
 
   }
 
-  filterByCountry = (query) => {
-    this.setState({countryFilter: query})
+  filterByCountry = (country) => {
+    this.countryFilter = country;
+    if (country === 'ALL') {
+      this.castlesCountryFiltered = this.allCastles.slice();
+    }
+    else {
+      this.castlesCountryFiltered = this.allCastles.filter(castle => castle.iso === country);
+    }
+    this.updateVisible(this.searchQuery);
   }
 
   search = (query) => {
-    this.setState({ castles: Data.search(query, this.allCastles) })
+    this.searchQuery = query;
+    this.updateVisible(this.searchQuery);
+  }
+  updateVisible = (searchQuery) => {
+    if (searchQuery === '') {
+      this.setState({
+        visibleCastles: this.castlesCountryFiltered
+      })
+    }
+    else {
+      this.setState({
+        visibleCastles: this.castlesCountryFiltered.filter(castle => {
+          return new RegExp(searchQuery, 'i').test(castle.title);
+        })
+      }
+      )
+    }
   }
 
   toggleSidebar = () => {
@@ -82,6 +115,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('rerendergin app')
     const appClassNames = classnames({
       'app': true,
       'sidebar-open': this.state.sidebarOpened
@@ -91,21 +125,19 @@ class App extends Component {
       <main className={appClassNames}>
         <header>
           <span className="sidebar-opener" title="Open search" onClick={this.toggleSidebar}>&#9776;</span>
-          <h1>
-            Castles in Poland
-          </h1>
+          <h1>Castles around the world</h1>
         </header>
         
         <section className="info-sidebar">
-          <label htmlFor="country-filter">Filter by ISO code:</label>
-          <input id="country-filter" placeholder="Filter by country" value={this.state.countryFilter} onChange={event => this.filterByCountry(event.target.value)} />
-          {/* <label htmlFor="castles-search">Search for a castle:</label>
-          <input id="castles-search" placeholder="Castle search" onChange={event => this.search(event.target.value)} /> */}
+          {/* <input id="country-filter" placeholder="Filter by country" value={this.state.countryFilter} onChange={event => this.filterByCountry(event.target.value)} /> */}
+          <IsoSearch countryFilter={this.countryFilter} filterByCountry={this.filterByCountry}/>
+          <label htmlFor="castles-search">Search for a castle:</label>
+          <input value={this.searchQuery} id="castles-search" placeholder="Castle search" onChange={event => this.search(event.target.value)} />
           <ul className="castles-listing">
             {/* {this.state.castles.map(castle => (
               < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
             ))} */}
-            {this.state.castles.filter(castle => castle.iso.includes(this.state.countryFilter)).map(castle => (
+            {this.state.visibleCastles.map(castle => (
               < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
             ))}
           </ul>
@@ -115,7 +147,7 @@ class App extends Component {
           </div>
         </section>
 
-        <Map castles={this.state.castles.filter(castle => castle.iso.includes(this.state.countryFilter))} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker} />
+        <Map castles={this.state.visibleCastles} castleClicked={this.castleClicked} activeMarker={this.state.activeMarker} />
       </main>
     );
   }
