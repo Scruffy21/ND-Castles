@@ -118,7 +118,7 @@ class App extends Component {
     return (
       <main className={appClassNames}>
         <header>
-          <span className="sidebar-opener" title="Open search" onClick={this.toggleSidebar}>&#9776;</span>
+          <button className="sidebar-opener" title="Open search" onClick={this.toggleSidebar}>&#9776;</button>
           <h1>Castles around the world</h1>
         </header>
         
@@ -135,7 +135,7 @@ class App extends Component {
               < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
             ))}
           </ul>
-          <div className="castle-info">
+          <div className="castle-info" tabIndex={0}>
             <h3>Castle details</h3>
             <div dangerouslySetInnerHTML={this.state.infoText}></div>
           </div>

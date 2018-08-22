@@ -18,6 +18,8 @@ header {
   font-size: 2rem;
   padding: 10px;
   cursor: pointer;
+  background: inherit;
+  border: none;
 }
 
 h1 {
@@ -60,10 +62,13 @@ h1 {
   display: inline-block;
 }
 
-.castle-item:hover {
+.castle-item-li:hover {
   background-color: #0091ff;
   color: white;
   cursor: pointer;
+}
+
+.castle-item-li:focus {
 }
 
 /* MAP */
