@@ -1,19 +1,5 @@
 import React, { Component } from 'react';
 import classnames from 'classnames'
-// TODO
-//zrob zeby dalo sie zlikwidowac active section/active marker (jakis krzyzyk)
-// daj chyba na sidebar te informacje. chociaz sam nie wiem.
-// get slightly nicer styling
-// accessibility (tab index etc)
-// make it work on mobiles! (this will take some time)
-// good job though! the markers work now!
-// handle google maps API errors (i'm already handling wikipedia errors)
-
-// need to think how to make it responsive for mobiles. where to put the clickable item to expan the sidebar...
-// this and accessibility and I think I'm done
-// maybe sw to cache also wiki requests...
-
-// try to not rerender map when only info requested? but we need to change the marker. I think it's okay this way...
 
 import Map from './Map'
 import CastleItem from './CastleItem'
