@@ -50,15 +50,6 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
 }));
 
 class Map extends React.Component {
-
-    // // not fully functional, because it's possible that same length but diff values
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log(this.props.castles, nextProps.castles, this.props.castles === nextProps.castles);
-    //     if ((this.props.castles === nextProps.castles) && (this.props.activeMarker === nextProps.activeMarker)) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
     
     render() {
         return (

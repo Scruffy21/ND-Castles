@@ -30,7 +30,7 @@ h1 {
 
 .info-sidebar {
   background-color: #e4f1ff;
-  padding: 0 10px;
+  padding-left: 10px;
   width: 20%;
   height: 90vh;
   display: inline-block;
@@ -80,8 +80,8 @@ h1 {
 }
 
 .sidebar-open .map-container {
-  width: calc(80% - 20px);
-  left: calc(20% + 20px)
+  width: calc(80% - 10px);
+  left: calc(20% + 10px)
 }
 
 .sidebar-open .info-sidebar {
@@ -103,3 +103,35 @@ h1 {
 .castle-image {
   float: left;
 }
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 1000px) {
+  .info-sidebar {
+    width: 300px;
+  }
+
+  .sidebar-open .map-container {
+    width: calc(100% - 310px);
+    left: 310px;
+  }
+
+} 
+
+
+@media only screen and (max-width: 500px) {
+  .info-sidebar {
+    max-width: 100%;
+  }
+
+  .sidebar-open .map-container {
+    width: 100%;
+    left: 0;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+} 
+
+

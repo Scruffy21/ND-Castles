@@ -65,6 +65,7 @@ class App extends Component {
         const text = data.query.pages[wikiId].extract;
         const name = this.allCastles[id].name;
         const image = data.query.pages[wikiId].thumbnail ? data.query.pages[wikiId].thumbnail.source : null;
+        // eslint-disable-next-line
         const imageInsert = `<image src=\'${image}\' alt=\'${name}\' class=\'castle-image\'>`;
         console.log(data);
         this.setState({
