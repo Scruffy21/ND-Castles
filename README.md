@@ -46,7 +46,7 @@ You can refer [to the React documentation](https://reactjs.org/docs/react-dom.ht
 
 ## Resources
 
-The castles' descriptions as well as their geographical coordinates were obtained from wikipedia.org.
+The castles' descriptions as well as their geographical coordinates were obtained from [Wikipedia](https://en.wikipedia.org/wiki/Main_Page)
 
 ## Service worker
 
