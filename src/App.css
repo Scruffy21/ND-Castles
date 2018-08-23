@@ -12,6 +12,8 @@ html, body {
 
 header {
   height: 10vh;
+  background: #526d9e;
+  color: #fff7da;
 }
 
 .sidebar-opener {
@@ -20,6 +22,11 @@ header {
   cursor: pointer;
   background: inherit;
   border: none;
+  color: #fff7da;
+}
+
+.sidebar-opener:focus {
+  outline-color: #fff7da;
 }
 
 h1 {
