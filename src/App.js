@@ -26,6 +26,7 @@ class App extends Component {
     sidebarOpened: false,
   }
 
+  // get castle names and urls from te JSON file
   constructor() {
     super();
     fetch('data.JSON')
@@ -37,6 +38,10 @@ class App extends Component {
       });
   }
 
+  // when a castle is clicked (either in the list or on the map) retrieve its data from
+  // wikipedia. and insert that data into the sidebar. also open the sidebar so that the
+  // data is visible
+  // also set a new active marker
   castleClicked = (id) => {
     const textAddition = `<p style="font-style:italic">Click <a target="_blank" href="https://en.wikipedia.org/wiki/${encodeURIComponent(this.allCastles[id].name)}">here</a> to learn more. Data sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
     
@@ -72,6 +77,7 @@ class App extends Component {
       })
   }
 
+  // reset selected castle and its marker
   resetSelected = () => {
     this.setState({
       infoText: {
@@ -84,6 +90,7 @@ class App extends Component {
     })
   }
 
+  // apply country filter to the entire set of castles
   filterByCountry = (country) => {
     this.countryFilter = country;
     if (country === 'ALL') {
@@ -95,10 +102,7 @@ class App extends Component {
     this.updateVisible(this.searchQuery);
   }
 
-  search = (query) => {
-    this.searchQuery = query;
-    this.updateVisible(this.searchQuery);
-  }
+  // apply search filter to the country filtered list of castles
   updateVisible = (searchQuery) => {
     if (this.state.activeMarker.id) {
       this.resetSelected();
@@ -119,10 +123,18 @@ class App extends Component {
     }
   }
 
+
+  search = (query) => {
+    this.searchQuery = query;
+    this.updateVisible(this.searchQuery);
+  }
+
   toggleSidebar = () => {
      this.setState(prevState => ({ sidebarOpened: !prevState.sidebarOpened }))
   }
 
+  // an additional module to apply multiple class names to the body, depending on
+  // the state
   render() {
     const appClassNames = classnames({
       'app': true,
@@ -145,7 +157,7 @@ class App extends Component {
               <CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
             ))}
           </ul>
-          <div className="castle-info" tabIndex={0}>
+          <div role="article" className="castle-info" tabIndex={0} >
             <h3 className="castle-info-header" >Castle details</h3>
             <button aria-label="Reset selected castle" title="Reset selected castle" className="reset-selected" onClick={this.resetSelected}>&#x2715;</button>
             <div dangerouslySetInnerHTML={this.state.infoText}></div>

@@ -29,7 +29,6 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
         <GoogleMap
             zoom={props.activeMarker.id ? 18 : 6}
             center={props.activeMarker.id ? props.activeMarker.location : { lat: 52.229676, lng: 19.012229 }}
-
         >
             <MarkerClusterer
                 averageCenter
