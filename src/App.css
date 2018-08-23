@@ -81,6 +81,7 @@ h1 {
 
 .castle-image {
   float: left;
+  max-width: 100%;
 }
 
 /* MAP */

@@ -45,13 +45,13 @@ class App extends Component {
     Data.getCastleInfo(id, this.allCastles[id])
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         const wikiId = Object.keys(data.query.pages)[0];
         const text = data.query.pages[wikiId].extract;
         const name = this.allCastles[id].name;
-        const image = data.query.pages[wikiId].thumbnail ? data.query.pages[wikiId].thumbnail.source : null;
+        const image = data.query.pages[wikiId].original ? data.query.pages[wikiId].original.source : null;
         // eslint-disable-next-line
         const imageInsert = `<image src=\'${image}\' alt=\'${name}\' class=\'castle-image\'>`;
-        console.log(data);
         this.setState({
           infoText: {
             __html: image ? imageInsert + text + textAddition : text + textAddition
@@ -59,8 +59,7 @@ class App extends Component {
           activeMarker: id
         });
       })
-      .catch(err => { 
-        console.log(err);
+      .catch(err => {
         this.setState({
           infoText: {
             __html: 'Unfortunately there was an error while loading castle information from Wikipedia. You can try clicking on the castle again.'
