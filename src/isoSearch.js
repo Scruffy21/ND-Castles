@@ -7,7 +7,7 @@ class IsoSearch extends React.Component {
     render() {
         return (
             <div className="country-filter-container">
-                <label htmlFor="country-filter">Filter by ISO code:</label>
+                <label htmlFor="country-filter">Filter castles by country code:</label>
                 <select value={this.props.countryFilter} id="country-filter" onChange={event => this.props.filterByCountry(event.target.value)} >
                     {countries.map(country => {
                         return (<option value={country} key={country}>{country}</option>)

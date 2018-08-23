@@ -44,6 +44,10 @@ h1 {
   transition: all ease 0.3s;
 }
 
+#country-filter {
+  display: block;
+}
+
 #castles-search {
   width: calc(100% - 20px);
   font-size: 1.1rem;
@@ -68,7 +72,15 @@ h1 {
   cursor: pointer;
 }
 
-.castle-item-li:focus {
+/* CASTLE DETAILS SECTION */
+
+.castle-info {
+  max-height: 40vh;
+  overflow: auto;
+}
+
+.castle-image {
+  float: left;
 }
 
 /* MAP */
@@ -95,18 +107,6 @@ h1 {
 
 #map {
   height: 100%;
-}
-
-
-/* CASTLE DETAILS SECTION */
-
-.castle-info {
-  max-height: 40vh;
-  overflow: auto;
-}
-
-.castle-image {
-  float: left;
 }
 
 /* MEDIA QUERIES */

@@ -8,8 +8,9 @@ class CastleItem extends React.Component {
                 className="castle-item-li"
                 tabIndex={0}
                 onClick={() => castleClicked(castle.id)}
-                onKeyPress={(event) => {
-                    if (event.key === 'Enter') { castleClicked(castle.id) }
+                onKeyUp={(event) => {
+                    if (event.keyCode === 13) { castleClicked(castle.id); }
+                    if (event.keyCode === 27) { document.querySelector(".castle-info").focus();}
                 }}
             >
             <span

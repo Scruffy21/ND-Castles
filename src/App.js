@@ -34,8 +34,6 @@ class App extends Component {
       });
   }
 
-
-
   castleClicked = (id) => {
     const textAddition = `<p style="font-style:italic">Click <a target="_blank" href="https://en.wikipedia.org/wiki/${encodeURIComponent(this.allCastles[id].name)}">here</a> to learn more. Data sourced from <a target="_blank" href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia</a></p>`;
     
@@ -68,8 +66,6 @@ class App extends Component {
             __html: 'Unfortunately there was an error while loading castle information from Wikipedia. You can try clicking on the castle again.'
         }});
       })
-    
-
   }
 
   filterByCountry = (country) => {
@@ -96,8 +92,6 @@ class App extends Component {
     else {
       this.setState({
         visibleCastles: this.castlesCountryFiltered.filter(castle => {
-          // the second one seems faster...
-          // return new RegExp(searchQuery, 'i').test(castle.name);
           return castle.name.toLowerCase().includes(searchQuery.toLowerCase());
         })
       }
@@ -118,21 +112,17 @@ class App extends Component {
     return (
       <main className={appClassNames}>
         <header>
-          <button className="sidebar-opener" title="Open search" onClick={this.toggleSidebar}>&#9776;</button>
+          <button aria-label="Open search" className="sidebar-opener" title="Open search" onClick={this.toggleSidebar}>&#9776;</button>
           <h1>Castles around the world</h1>
         </header>
         
         <section className="info-sidebar">
-          {/* <input id="country-filter" placeholder="Filter by country" value={this.state.countryFilter} onChange={event => this.filterByCountry(event.target.value)} /> */}
           <IsoSearch countryFilter={this.countryFilter} filterByCountry={this.filterByCountry}/>
           <label htmlFor="castles-search">Search for a castle:</label>
           <input value={this.searchQuery} id="castles-search" placeholder="Castle search" onChange={event => this.search(event.target.value)} />
           <ul className="castles-listing">
-            {/* {this.state.castles.map(castle => (
-              < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
-            ))} */}
             {this.state.visibleCastles.map(castle => (
-              < CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
+              <CastleItem castle={castle} castleClicked={this.castleClicked} key={castle.id}/>
             ))}
           </ul>
           <div className="castle-info" tabIndex={0}>
