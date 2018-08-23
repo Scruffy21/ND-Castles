@@ -48,7 +48,6 @@ class App extends Component {
     Data.getCastleInfo(id, this.allCastles[id])
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         const wikiId = Object.keys(data.query.pages)[0];
         const text = data.query.pages[wikiId].extract;
         const name = this.allCastles[id].name;
@@ -137,7 +136,7 @@ class App extends Component {
           <h1>Castles around the world</h1>
         </header>
         
-        <section className="info-sidebar">
+        <section className="info-sidebar" aria-hidden={!this.state.sidebarOpened}>
           <IsoSearch countryFilter={this.countryFilter} filterByCountry={this.filterByCountry}/>
           <label htmlFor="castles-search">Search for a castle:</label>
           <input value={this.searchQuery} id="castles-search" placeholder="Castle search" onChange={event => this.search(event.target.value)} />
