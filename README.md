@@ -46,5 +46,9 @@ You can refer [to the React documentation](https://reactjs.org/docs/react-dom.ht
 
 ## Resources
 
-The castles' descriptions were obtained from wikipedia.org
+The castles' descriptions as well as their geographical coordinates were obtained from wikipedia.org.
+
+## Service worker
+
+A service worker that caches the index.html file as well as css and javascript is available in production build. First run *npm run build*, then change directory to '/build' and start a server there. You can do it for example by first installing the http-server package *npm install http-server -g* and then by running *http-server* in your console. After that, the server should be running and your service worker as well.
 
