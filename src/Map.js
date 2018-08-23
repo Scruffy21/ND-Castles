@@ -24,10 +24,12 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
     // make sure we're not calling the makeMarkerIcon function unnecessarily
     defaultIcon = defaultIcon || makeMarkerIcon('ff1616', window.google);
     highlightedIcon = highlightedIcon || makeMarkerIcon('0091ff', window.google);
+    console.log(props.activeMarker);
     return (
         <GoogleMap
-            defaultCenter={{ lat: 52.229676, lng: 19.012229 }}
-            defaultZoom={6}
+            zoom={props.activeMarker.id ? 18 : 6}
+            center={props.activeMarker.id ? props.activeMarker.location : { lat: 52.229676, lng: 19.012229 }}
+
         >
             <MarkerClusterer
                 averageCenter
@@ -39,8 +41,8 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
                         position={castle.location}
                         title={castle.name}
                         key={castle.id}
-                        icon={castle.id === props.activeMarker ? highlightedIcon : defaultIcon}
-                        animation={castle.id === props.activeMarker ? window.google.maps.Animation.BOUNCE : null}
+                        icon={castle.id === props.activeMarker.id ? highlightedIcon : defaultIcon}
+                        animation={castle.id === props.activeMarker.id ? window.google.maps.Animation.BOUNCE : null}
                         onClick={() => props.castleClicked(castle.id)}>
                     </Marker>
                 ))}

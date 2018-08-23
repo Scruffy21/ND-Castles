@@ -75,8 +75,20 @@ h1 {
 /* CASTLE DETAILS SECTION */
 
 .castle-info {
-  max-height: 40vh;
+  max-height: 41vh;
   overflow: auto;
+}
+
+.castle-info-header {
+  display: inline-block;
+}
+
+.reset-selected {
+  font-size: 1.1rem;
+  margin-left: 5px;
+  background: inherit;
+  border: none;
+  cursor: pointer;
 }
 
 .castle-image {

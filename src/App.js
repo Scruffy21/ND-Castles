@@ -19,7 +19,10 @@ class App extends Component {
     infoText: {
       __html: 'Information about the clicked castle will appear here.'
     },
-    activeMarker: null,
+    activeMarker: {
+      id: null,
+      location: null
+    },
     sidebarOpened: false,
   }
 
@@ -56,7 +59,10 @@ class App extends Component {
           infoText: {
             __html: image ? imageInsert + text + textAddition : text + textAddition
           },
-          activeMarker: id
+          activeMarker: {
+            id: id,
+            location: this.allCastles[id].location
+          }
         });
       })
       .catch(err => {
@@ -65,6 +71,18 @@ class App extends Component {
             __html: 'Unfortunately there was an error while loading castle information from Wikipedia. You can try clicking on the castle again.'
         }});
       })
+  }
+
+  resetSelected = () => {
+    this.setState({
+      infoText: {
+        __html: 'Information about the clicked castle will appear here.'
+      },
+      activeMarker: {
+        id: null,
+        location: null
+      }
+    })
   }
 
   filterByCountry = (country) => {
@@ -83,9 +101,13 @@ class App extends Component {
     this.updateVisible(this.searchQuery);
   }
   updateVisible = (searchQuery) => {
+    if (this.state.activeMarker.id) {
+      this.resetSelected();
+    }
     if (searchQuery === '') {
       this.setState({
         visibleCastles: this.castlesCountryFiltered
+
       })
     }
     else {
@@ -125,7 +147,8 @@ class App extends Component {
             ))}
           </ul>
           <div className="castle-info" tabIndex={0}>
-            <h3>Castle details</h3>
+            <h3 className="castle-info-header" >Castle details</h3>
+            <button aria-label="Reset selected castle" title="Reset selected castle" className="reset-selected" onClick={this.resetSelected}>&#x2715;</button>
             <div dangerouslySetInnerHTML={this.state.infoText}></div>
           </div>
         </section>
