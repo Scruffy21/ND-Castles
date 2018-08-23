@@ -24,7 +24,6 @@ const GoogleMapCont = withScriptjs(withGoogleMap(props => {
     // make sure we're not calling the makeMarkerIcon function unnecessarily
     defaultIcon = defaultIcon || makeMarkerIcon('ff1616', window.google);
     highlightedIcon = highlightedIcon || makeMarkerIcon('0091ff', window.google);
-    console.log(props.activeMarker);
     return (
         <GoogleMap
             zoom={props.activeMarker.id ? 18 : 6}
