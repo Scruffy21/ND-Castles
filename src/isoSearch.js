@@ -1,6 +1,6 @@
 import React from 'react'
 
-const countries = ["ALL", "GBR", "TUR", "CZE", "DEU", "AUS", "FRA", "USA", "LUX", "IRL", "NLD", "BEL", "AUT", "JPN", "LTU", "IRN", "LVA", "BLR", "FIN", "ITA", "SWE", "CAN", "POL", "PRT", "RUS", "ROU", "NOR", "DNK", "HRV", "ZAF", "PRI", "HUN", "UKR", "CYP", "CHE", "NZL", "SVK", "ISR", "GHA", "SVN", "SYR", "ESP", "GRC", "ALB", "BIH", "CHN", "MEX", "JAM", "KOR", "ATA", "EST", "JOR", "SAU", "IND", "SRB", "LBN", "NAM", "ARM", "AFG", "CUB", "VNM", "MNG", "BMU", "RKS", "EGY", "DOM", "CHL", "ARG", "AZE", "THA", "IRQ", "YEM", "PRK", "GTM", "NGA", "IDN", "GEO", "GRL", "TTO", "LKA", "TWN", "ZWE", "unknown"]
+const countries = ["ALL", "GBR", "TUR", "CZE", "DEU", "AUS", "FRA", "USA", "LUX", "IRL", "NLD", "BEL", "AUT", "JPN", "LTU", "IRN", "LVA", "BLR", "FIN", "ITA", "SWE", "CAN", "POL", "PRT", "RUS", "ROU", "NOR", "DNK", "HRV", "ZAF", "PRI", "HUN", "UKR", "CYP", "CHE", "NZL", "SVK", "ISR", "GHA", "SVN", "SYR", "ESP", "GRC", "ALB", "BIH", "CHN", "MEX", "JAM", "KOR", "ATA", "EST", "JOR", "SAU", "IND", "SRB", "LBN", "NAM", "ARM", "AFG", "CUB", "VNM", "MNG", "BMU", "RKS", "EGY", "DOM", "CHL", "ARG", "AZE", "THA", "IRQ", "YEM", "PRK", "GTM", "NGA", "IDN", "GEO", "GRL", "TTO", "LKA", "TWN", "ZWE", "unknown"];
 
 class IsoSearch extends React.Component {
 
