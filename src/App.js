@@ -26,7 +26,7 @@ class App extends Component {
     sidebarOpened: false,
   }
 
-  // get castle names and urls from te JSON file
+  // get castle names and urls from the JSON file
   constructor() {
     super();
     fetch('data.JSON')
@@ -102,7 +102,7 @@ class App extends Component {
     this.updateVisible(this.searchQuery);
   }
 
-  // apply search filter to the country filtered list of castles
+  // apply search filter to the country-filtered list of castles
   updateVisible = (searchQuery) => {
     if (this.state.activeMarker.id) {
       this.resetSelected();
@@ -110,7 +110,6 @@ class App extends Component {
     if (searchQuery === '') {
       this.setState({
         visibleCastles: this.castlesCountryFiltered
-
       })
     }
     else {
@@ -123,19 +122,19 @@ class App extends Component {
     }
   }
 
-
   search = (query) => {
     this.searchQuery = query;
     this.updateVisible(this.searchQuery);
   }
 
   toggleSidebar = () => {
-     this.setState(prevState => ({ sidebarOpened: !prevState.sidebarOpened }))
+    this.setState(prevState => ({ sidebarOpened: !prevState.sidebarOpened }))
   }
 
-  // an additional module to apply multiple class names to the body, depending on
-  // the state
+
   render() {
+    // an additional module to apply multiple class names to the body, depending on
+    // the state
     const appClassNames = classnames({
       'app': true,
       'sidebar-open': this.state.sidebarOpened
