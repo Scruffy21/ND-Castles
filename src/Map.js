@@ -56,7 +56,7 @@ class Map extends React.Component {
             <GoogleMapCont
                 containerElement={<div className='map-container' role='application' aria-label='Map with castles' />}
                 mapElement={<div id='map'  />}
-                googleMapURL='https://maps.googleapis.com/maps/api/js?key=AIzaSyDDPwx0mGzNzu-2INrplAdAOjyojQ65E6I&v=3'
+                googleMapURL='https://maps.googleapis.com/maps/api/js?v=3'
                 loadingElement={<div style={{ height: '100%' }} />}
                 castles={this.props.castles}
                 castleClicked={this.props.castleClicked}
